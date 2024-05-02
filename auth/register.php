@@ -32,6 +32,10 @@
             float: right;
         }
 
+        p {
+            font-size: 12px;
+        }
+
         @media(min-width:768px) {
             section {
                 margin: 150px;
@@ -54,7 +58,9 @@
             <br><br>
             <label for="email">Email</label> <br>
             <input name="email" type="email" maxlength="15" placeholder="Enter your email">
-            <br><br>
+            <br>
+            <p>Already have an account? <a href="./login.php">Login</a></p>
+            <br>
             <button type="submit">Submit</button>
         </form>
     </section>

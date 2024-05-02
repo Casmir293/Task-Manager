@@ -32,6 +32,10 @@
             float: right;
         }
 
+        p {
+            font-size: 12px;
+        }
+
         @media(min-width:768px) {
             section {
                 margin: 150px;
@@ -51,7 +55,9 @@
             <br><br>
             <label for="password">Password</label> <br>
             <input name="password" type="password" maxlength="15" placeholder="Enter your password">
-            <br><br>
+            <br>
+            <p>Don't have an account? <a href="./register.php">Register</a></p>
+            <br>
             <button type="submit">Submit</button>
         </form>
     </section>
