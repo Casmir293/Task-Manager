@@ -90,7 +90,7 @@
 
         <section>
             <h1>⏰ My Task Manager</h1>
-            <?php include 'menu.php'; ?> <form action="" method="post">
+            <?php include './components/menu.php'; ?> <form action="" method="post">
                 <label for="email">Email</label> <br>
                 <input name="email" maxlength="25" placeholder="Enter your email" disabled>
                 <label for="username">Username</label> <br>

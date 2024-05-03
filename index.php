@@ -54,7 +54,7 @@
                 margin: 150px;
                 background-color: white;
                 border-radius: 12px;
-                padding: 20px;
+                padding: 20px 50px;
             }
 
             h1 {
@@ -66,6 +66,13 @@
                 margin-bottom: 20px;
             }
         }
+
+        @media(min-width:1024px) {
+            .wrapper {
+                margin: 150px 350px;
+                padding: 20px 250px;
+            }
+        }
     </style>
 </head>
 
@@ -74,7 +81,7 @@
         <h1>⏰ My Task Manager</h1>
 
         <div>
-            <?php include 'menu.php'; ?>
+            <?php include './components/menu.php'; ?>
         </div>
 
         <div class="add-task-btn">
@@ -86,7 +93,11 @@
                 You do not have any task!
             </div>
 
-            <!-- <div class="task-container">tasks</div> -->
+            <div>
+                <?php include './components/task-list.php'; ?>
+            </div>
+
+
         </section>
 
 
