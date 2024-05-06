@@ -92,16 +92,11 @@
             <div class="empty-task">
                 You do not have any task!
             </div>
-
+            
             <div>
                 <?php include './components/task-list.php'; ?>
             </div>
-
-
         </section>
-
-
     </section>
 </body>
-
 </html>

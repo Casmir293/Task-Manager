@@ -49,19 +49,19 @@
         <h1>⏰ My Task Manager</h1>
         <h2>Register</h2>
 
-        <form action="" method="post">
+        <form action="../code.php" method="POST">
             <label for="username">Username</label> <br>
-            <input name="username" maxlength="25" placeholder="Enter your Username">
+            <input name="username" maxlength="15" placeholder="Enter your Username">
             <br><br>
             <label for="password">Password</label> <br>
             <input name="password" type="password" maxlength="15" placeholder="Enter your password">
             <br><br>
             <label for="email">Email</label> <br>
-            <input name="email" type="email" maxlength="15" placeholder="Enter your email">
+            <input name="email" type="email" maxlength="50" placeholder="Enter your email">
             <br>
             <p>Already have an account? <a href="./login.php">Login</a></p>
             <br>
-            <button type="submit">Submit</button>
+            <button type="submit" name="register_btn">Submit</button>
         </form>
     </section>
 </body>
