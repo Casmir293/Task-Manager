@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,6 +52,13 @@
     <section>
         <h1>⏰ My Task Manager</h1>
         <h2>Register</h2>
+
+        <?php
+        if (isset($_SESSION['status'])) {
+            echo "<h3>" . $_SESSION['status'] . "</h3>";
+            unset($_SESSION['status']);
+        }
+        ?>
 
         <form action="../code.php" method="POST">
             <label for="username">Username</label> <br>

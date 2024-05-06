@@ -1,0 +1,85 @@
+ 
+<?php
+include('./private/dbconn.php');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+session_start();
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
+require_once './private/secret.php';
+
+function sendemail_verify($username, $email, $token)
+{
+    global $pwd;
+    $mail = new PHPMailer(true);
+
+    // Server settings
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+    $mail->isSMTP();
+    $mail->SMTPAuth   = true;
+    $mail->Host       = 'smtp.gmail.com';
+    $mail->Username   = 'casmir293@gmail.com';
+    $mail->Password   = $pwd;
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port       = 465;
+
+    //Recipients
+    $mail->setFrom('casmir293@gmail.com', $username);
+    $mail->addAddress($email);
+
+    //Content
+    $mail->isHTML(true);
+    $mail->Subject = 'Email Verificatition from My Task Manager';
+    $email_template = "
+    <h2>You have Registered with My Task Manager</h2>
+    <p>Verify your email address with the below link to enable your login access.</p>
+    <br/><br/>
+    <button><a href='http://localhost/task-manager/auth/verify-email.php?token=$token'>Verify!</a></button>
+    ";
+    $mail->Body = $email_template;
+    $mail->send();
+    echo 'Message has been sent';
+}
+
+if (isset($_POST["register_btn"])) {
+
+    $username = $_POST["username"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    $token = md5(rand());
+
+    // Check if email or username exists, if they don't, register the user.
+    $check_email_query = "SELECT email FROM users WHERE email='$email' LIMIT 1";
+    $check_email_query_run = mysqli_query($conn, $check_email_query);
+    $check_username_query = "SELECT username FROM users WHERE username='$username' LIMIT 1";
+    $check_username_query_run = mysqli_query($conn, $check_username_query);
+
+    if (mysqli_num_rows($check_email_query_run) > 0) {
+        $_SESSION['status'] = "Email already exists";
+        header("Location: auth/register.php");
+    } else if (mysqli_num_rows($check_username_query_run) > 0) {
+        $_SESSION['status'] = "Username already exists";
+        header("Location: auth/register.php");
+    } else {
+        $query = "INSERT INTO users (username, email, password, token) VALUES ('$username', '$email', '$password', '$token')";
+        $query_run = mysqli_query($conn, $query);
+
+        if ($query_run) {
+            sendemail_verify("$username", "$email", "$token");
+            $_SESSION['status'] = "Registration Successful! Please verify your email";
+            header("Location: auth/login.php");
+        } else {
+            $_SESSION['status'] = "Registration Failed!";
+            header('Location: auth/register.php');
+        }
+    }
+}
+
+mysqli_close($conn);
