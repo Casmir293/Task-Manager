@@ -30,22 +30,20 @@ include('./auth/controller/authentication.php');
         }
 
         .add-task-btn {
-            padding: 10px;
-            background: green;
-            color: white;
-            border-radius: 12px;
-            float: right;
-            cursor: pointer;
-
+            display: flex;
+            justify-content: space-between;
         }
 
-        .add-task-btn>a {
+        .add-task-btn>p>a {
             text-decoration: none;
             color: white;
+            background: green;
+            padding: 6px 8px;
+            border-radius: 12px;
         }
 
         .task-wrapper {
-            margin-top: 100px;
+            margin-top: 10px;
         }
 
         .empty-task {
@@ -89,7 +87,8 @@ include('./auth/controller/authentication.php');
         </div>
 
         <div class="add-task-btn">
-            <a href="./add-task.php">+ Add new task</a>
+            <h3>Hello <?= $_SESSION['auth_user']['username']; ?></h3>
+            <p><a href="./add-task.php">+ Add new task</a></p>
         </div>
 
         <section class="task-wrapper">

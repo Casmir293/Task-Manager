@@ -20,6 +20,7 @@ if (isset($_POST["login_btn"]) && !empty($username) && !empty($password)) {
             if ($row['verify_status'] == '1') {
                 $_SESSION['authenticated'] = true;
                 $_SESSION['auth_user'] = [
+                    'email' => $row['email'],
                     'username' => $row['username'],
                     'password' => $row['password'],
                 ];

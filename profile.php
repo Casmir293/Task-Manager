@@ -96,9 +96,9 @@ include('./auth/controller/authentication.php');
             <h1>⏰ My Task Manager</h1>
             <?php include './components/menu.php'; ?> <form action="" method="post">
                 <label for="email">Email</label> <br>
-                <input name="email" maxlength="25" placeholder="Enter your email" disabled>
-                <label for="username">Username</label> <br>
-                <input name="username" maxlength="25" placeholder="Enter your Username">
+                <input name="email" maxlength="25" placeholder="Enter your email" value="<?= $_SESSION['auth_user']['email']; ?>" disabled>
+                <label for=" username">Username</label> <br>
+                <input name="username" maxlength="25" placeholder="Enter your Username" value="<?= $_SESSION['auth_user']['username']; ?>" disabled>
                 <br><br>
                 <label for="password">Old Password</label> <br>
                 <input name="password" type="password" maxlength="15" placeholder="Enter old password">
