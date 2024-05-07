@@ -60,7 +60,7 @@ session_start();
         }
         ?>
 
-        <form action="" method="post">
+        <form action="./controller/login-logic.php" method="post">
             <label for="username">Username</label> <br>
             <input name="username" maxlength="25" placeholder="Enter your Username">
             <br><br>
