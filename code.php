@@ -47,12 +47,12 @@ function sendemail_verify($username, $email, $token)
     echo 'Message has been sent';
 }
 
-if (isset($_POST["register_btn"])) {
+$username = $_POST["username"];
+$email = $_POST["email"];
+$password = $_POST["password"];
+$password = password_hash($password, PASSWORD_DEFAULT);
 
-    $username = $_POST["username"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $password = password_hash($password, PASSWORD_DEFAULT);
+if (isset($_POST["register_btn"]) && !empty($username) && !empty($email) && !empty($password)) {
     $token = md5(rand());
 
     // Check if email or username exists, if they don't, register the user.
@@ -62,11 +62,13 @@ if (isset($_POST["register_btn"])) {
     $check_username_query_run = mysqli_query($conn, $check_username_query);
 
     if (mysqli_num_rows($check_email_query_run) > 0) {
-        $_SESSION['status'] = "Email already exists";
+        $_SESSION['status'] = "Email already exists, use another email.";
         header("Location: auth/register.php");
+        exit(0);
     } else if (mysqli_num_rows($check_username_query_run) > 0) {
         $_SESSION['status'] = "Username already exists";
         header("Location: auth/register.php");
+        exit(0);
     } else {
         $query = "INSERT INTO users (username, email, password, token) VALUES ('$username', '$email', '$password', '$token')";
         $query_run = mysqli_query($conn, $query);
@@ -75,11 +77,17 @@ if (isset($_POST["register_btn"])) {
             sendemail_verify("$username", "$email", "$token");
             $_SESSION['status'] = "Registration Successful! Please verify your email";
             header("Location: auth/login.php");
+            exit(0);
         } else {
             $_SESSION['status'] = "Registration Failed!";
             header('Location: auth/register.php');
+            exit(0);
         }
     }
+} else {
+    $_SESSION['status'] = "Fill all fields!";
+    header("Location: auth/register.php");
+    exit(0);
 }
 
 mysqli_close($conn);

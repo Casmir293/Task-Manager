@@ -55,7 +55,7 @@ session_start();
 
         <?php
         if (isset($_SESSION['status'])) {
-            echo "<h3>" . $_SESSION['status'] . "</h3>";
+            echo "<h3 style='color: green'>" . $_SESSION['status'] . "</h3>";
             unset($_SESSION['status']);
         }
         ?>
