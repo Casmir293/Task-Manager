@@ -47,8 +47,8 @@ function sendemail_verify($username, $email, $token)
     echo 'Message has been sent';
 }
 
-$username = $_POST["username"];
-$email = $_POST["email"];
+$username = trim($_POST["username"]);
+$email = trim($_POST["email"]);
 $password = $_POST["password"];
 $password = password_hash($password, PASSWORD_DEFAULT);
 

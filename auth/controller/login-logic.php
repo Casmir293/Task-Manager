@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 session_start();
 include('../../private/dbconn.php');
 
-$username = $_POST["login_username"];
+$username = trim($_POST["login_username"]);
 $password = $_POST["login_password"];
 
 if (isset($_POST["login_btn"]) && !empty($username) && !empty($password)) {
@@ -18,6 +18,11 @@ if (isset($_POST["login_btn"]) && !empty($username) && !empty($password)) {
 
         if (password_verify($password, $hashed_password)) {
             if ($row['verify_status'] == '1') {
+                $_SESSION['authenticated'] = true;
+                $_SESSION['auth_user'] = [
+                    'username' => $row['username'],
+                    'password' => $row['password'],
+                ];
                 $_SESSION['status'] = "Login successful";
                 header("Location: ../../index.php");
                 exit();
