@@ -100,11 +100,11 @@ include('./auth/controller/authentication.php');
                 <label for=" username">Username</label> <br>
                 <input name="username" maxlength="25" placeholder="Enter your Username" value="<?= $_SESSION['auth_user']['username']; ?>" disabled>
                 <br><br>
-                <label for="password">Old Password</label> <br>
-                <input name="password" type="password" maxlength="15" placeholder="Enter old password">
+                <label for="old_password">Old Password</label> <br>
+                <input name="old_password" type="password" maxlength="15" placeholder="Enter old password">
                 <br><br>
-                <label for="password">New Password</label> <br>
-                <input name="password" type="password" maxlength="15" placeholder="Enter new password">
+                <label for="new_password">New Password</label> <br>
+                <input name="new_password" type="password" maxlength="15" placeholder="Enter new password">
                 <br><br>
                 <div class="publish-task-btn">
                     Publish
