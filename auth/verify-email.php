@@ -12,7 +12,6 @@ if (isset($_GET['token'])) {
     $verify_query_run = mysqli_query($conn, $verify_query);
 
     if (mysqli_num_rows($verify_query_run) > 0) {
-        $row = mysqli_fetch_array($verify_query_run);
 
         if ($row['verify_status'] == "0") {
             $clicked_token = $row['token'];

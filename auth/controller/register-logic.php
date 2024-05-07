@@ -56,7 +56,7 @@ if (isset($_POST["register_btn"]) && !empty($username) && !empty($email) && !emp
     $token = md5(rand());
 
     // Check if email or username exists, if they don't, register the user.
-    $check_email_query = "SELECT email FROM users WHERE email='$email' LIMIT 1";
+    $check_email_query = "SELECT email FROM users WHERE email ='$email' LIMIT 1";
     $check_email_query_run = mysqli_query($conn, $check_email_query);
     $check_username_query = "SELECT username FROM users WHERE username='$username' LIMIT 1";
     $check_username_query_run = mysqli_query($conn, $check_username_query);

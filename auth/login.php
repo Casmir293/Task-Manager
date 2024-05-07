@@ -62,14 +62,14 @@ session_start();
 
         <form action="./controller/login-logic.php" method="post">
             <label for="username">Username</label> <br>
-            <input name="username" maxlength="25" placeholder="Enter your Username">
+            <input name="login_username" maxlength="25" placeholder="Enter your Username">
             <br><br>
             <label for="password">Password</label> <br>
-            <input name="password" type="password" maxlength="15" placeholder="Enter your password">
+            <input name="login_password" type="password" maxlength="15" placeholder="Enter your password">
             <br>
             <p>Don't have an account? <a href="./register.php">Register</a></p>
             <br>
-            <button type="submit">Submit</button>
+            <button type="submit" name="login_btn">Submit</button>
         </form>
     </section>
 </body>
