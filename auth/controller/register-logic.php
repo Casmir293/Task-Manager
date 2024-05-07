@@ -1,6 +1,6 @@
  
 <?php
-include('./private/dbconn.php');
+include('../../private/dbconn.php');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -11,8 +11,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php';
-require_once './private/secret.php';
+require '../../vendor/autoload.php';
+require_once '../../private/secret.php';
 
 function sendemail_verify($username, $email, $token)
 {
@@ -63,11 +63,11 @@ if (isset($_POST["register_btn"]) && !empty($username) && !empty($email) && !emp
 
     if (mysqli_num_rows($check_email_query_run) > 0) {
         $_SESSION['status'] = "Email already exists, use another email.";
-        header("Location: auth/register.php");
+        header("Location: ../register.php");
         exit(0);
     } else if (mysqli_num_rows($check_username_query_run) > 0) {
         $_SESSION['status'] = "Username already exists";
-        header("Location: auth/register.php");
+        header("Location: ../register.php");
         exit(0);
     } else {
         $query = "INSERT INTO users (username, email, password, token) VALUES ('$username', '$email', '$password', '$token')";
@@ -76,17 +76,17 @@ if (isset($_POST["register_btn"]) && !empty($username) && !empty($email) && !emp
         if ($query_run) {
             sendemail_verify("$username", "$email", "$token");
             $_SESSION['status'] = "Registration Successful! Please verify your email";
-            header("Location: auth/login.php");
+            header("Location: ../login.php");
             exit(0);
         } else {
             $_SESSION['status'] = "Registration Failed!";
-            header('Location: auth/register.php');
+            header('Location: ../register.php');
             exit(0);
         }
     }
 } else {
     $_SESSION['status'] = "Fill all fields!";
-    header("Location: auth/register.php");
+    header("Location: ../register.php");
     exit(0);
 }
 
