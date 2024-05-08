@@ -51,7 +51,7 @@ session_start();
 <body>
     <section>
         <h1>⏰ My Task Manager</h1>
-        <h2>Login</h2>
+        <h2>Resend Email Verification</h2>
 
         <?php
         if (isset($_SESSION['status'])) {
@@ -60,17 +60,11 @@ session_start();
         }
         ?>
 
-        <form action="./controller/login-logic.php" method="post">
-            <label for="username">Username</label> <br>
-            <input name="login_username" maxlength="25" placeholder="Enter your Username">
-            <br><br>
-            <label for="password">Password</label> <br>
-            <input name="login_password" type="password" maxlength="15" placeholder="Enter your password">
+        <form action="./controller/resend-verification-logic.php" method="post">
+            <label for="email">Email Address</label> <br>
+            <input name="email" maxlength="25" placeholder="Enter your Email">
             <br>
-            <hr>
-            <p>Did not receive email verification? <a href="./resend-email-verification.php">Resend</a></p>
-            <p>Don't have an account? <a href="./register.php">Register</a></p>
-            <br>
+            <p>Already verified? <a href="./login.php">Login</a></p>
             <button type="submit" name="login_btn">Submit</button>
         </form>
     </section>
