@@ -1,9 +1,7 @@
  <?php
-    include('../../private/dbconn.php');
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-
     session_start();
 
     use PHPMailer\PHPMailer\PHPMailer;
@@ -12,6 +10,7 @@
 
     require '../../vendor/autoload.php';
     require_once '../../private/secret.php';
+    require_once('../../private/dbconn.php');
 
     function sendemail_verify($username, $email, $token)
     {
@@ -56,12 +55,11 @@
     }
 
     $username = test_input($_POST["username"]);
-    $email = test_input($_POST["email"]);
-    $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $password = $_POST["password"];
     $password = password_hash($password, PASSWORD_DEFAULT);
 
-    if (isset($_POST["register_btn"]) && !empty($username) && !empty($email) && !empty($password)) {
+    if (isset($_POST["register_btn"]) && !empty($username) && !empty(filter_var($email, FILTER_VALIDATE_EMAIL)) && !empty($password)) {
         $token = md5(rand());
 
         // Check if email or username exists, if they don't, register the user.

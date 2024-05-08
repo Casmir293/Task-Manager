@@ -1,5 +1,5 @@
 <?php
-include('./auth/controller/authentication.php');
+require_once('./auth/controller/authentication.php');
 ?>
 
 <!DOCTYPE html>
@@ -83,11 +83,11 @@ include('./auth/controller/authentication.php');
         <h1>⏰ My Task Manager</h1>
 
         <div>
-            <?php include './components/menu.php'; ?>
+            <?php include_once('./components/menu.php'); ?>
         </div>
 
         <div class="add-task-btn">
-            <h3>Hello <?= $_SESSION['auth_user']['username']; ?></h3>
+            <h3>Hello <?= $_SESSION['auth_user']['username']; ?>!</h3>
             <p><a href="./add-task.php">+ Add new task</a></p>
         </div>
 
@@ -97,7 +97,7 @@ include('./auth/controller/authentication.php');
             </div>
 
             <div>
-                <?php include './components/task-list.php'; ?>
+                <?php include_once('./components/task-list.php'); ?>
             </div>
         </section>
     </section>

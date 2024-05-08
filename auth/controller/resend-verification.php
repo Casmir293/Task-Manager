@@ -1,6 +1,5 @@
 <?php
 session_start();
-include('../../private/dbconn.php');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -9,8 +8,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require '../../vendor/autoload.php';
+require_once '../../vendor/autoload.php';
 require_once '../../private/secret.php';
+require_once('../../private/dbconn.php');
 
 function resend_email_verify($username, $email, $token)
 {

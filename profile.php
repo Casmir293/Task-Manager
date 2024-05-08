@@ -1,5 +1,5 @@
 <?php
-include('./auth/controller/authentication.php');
+require_once('./auth/controller/authentication.php');
 ?>
 
 <!DOCTYPE html>
@@ -91,10 +91,10 @@ include('./auth/controller/authentication.php');
 
 <body>
     <div>
-
         <section>
             <h1>⏰ My Task Manager</h1>
-            <?php include './components/menu.php'; ?> <form action="" method="post">
+            <?php include_once('./components/menu.php'); ?>
+            <form action="" method="post">
                 <label for="email">Email</label> <br>
                 <input name="email" maxlength="25" placeholder="Enter your email" value="<?= $_SESSION['auth_user']['email']; ?>" disabled>
                 <label for=" username">Username</label> <br>
@@ -107,9 +107,8 @@ include('./auth/controller/authentication.php');
                 <input name="new_password" type="password" maxlength="15" placeholder="Enter new password">
                 <br><br>
                 <div class="publish-task-btn">
-                    Publish
+                    Update
                 </div>
-
                 <div class="cancel-task-btn">
                     <a href="./index.php">Cancel</a>
                 </div>
