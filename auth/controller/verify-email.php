@@ -3,13 +3,15 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
-include('../private/dbconn.php');
+include('../../private/dbconn.php');
 
 if (isset($_GET['token'])) {
     $token = $_GET['token'];
 
     $verify_query = "SELECT token, verify_status FROM users WHERE token = '$token' LIMIT 1";
     $verify_query_run = mysqli_query($conn, $verify_query);
+
+    $row = mysqli_fetch_assoc($verify_query_run);
 
     if (mysqli_num_rows($verify_query_run) > 0) {
 
@@ -21,26 +23,26 @@ if (isset($_GET['token'])) {
 
             if ($update_query_run) {
                 $_SESSION['status'] = "Account verified successfully!";
-                header("Location: login.php");
+                header("Location: ../login.php");
                 exit(0);
             } else {
                 $_SESSION['status'] = "Verification failed!";
-                header("Location: login.php");
+                header("Location: ../login.php");
                 exit(0);
             }
         } else {
             $_SESSION['status'] = "Email already verified, please login.";
-            header("Location: login.php");
+            header("Location: ../login.php");
             exit(0);
         }
     } else {
         $_SESSION['status'] = "This token does not exist";
-        header("Location: login.php");
+        header("Location: ../login.php");
         exit(0);
     }
 } else {
     $_SESSION['status'] = "Not Allowed";
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit(0);
 }
 

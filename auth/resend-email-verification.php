@@ -60,12 +60,12 @@ session_start();
         }
         ?>
 
-        <form action="./controller/resend-verification-logic.php" method="post">
+        <form action="./controller/resend-verification.php" method="post">
             <label for="email">Email Address</label> <br>
             <input name="email" maxlength="25" placeholder="Enter your Email">
             <br>
             <p>Already verified? <a href="./login.php">Login</a></p>
-            <button type="submit" name="login_btn">Submit</button>
+            <button type="submit" name="verify_btn">Submit</button>
         </form>
     </section>
 </body>
