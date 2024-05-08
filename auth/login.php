@@ -60,7 +60,7 @@ session_start();
         }
         ?>
 
-        <form action="./controller/login-logic.php" method="post">
+        <form action="./controller/login-logic.php" method="post" onsubmit="showLoading()">
             <label for="username">Username</label> <br>
             <input name="login_username" maxlength="25" placeholder="Enter your Username">
             <br><br>
@@ -71,9 +71,11 @@ session_start();
             <p>Did not receive email verification? <a href="./resend-email-verification.php">Resend</a></p>
             <p>Don't have an account? <a href="./register.php">Register</a></p>
             <br>
-            <button type="submit" name="login_btn">Submit</button>
+            <button type="submit" name="login_btn" id="btn">Submit</button>
         </form>
     </section>
+
+    <script src=" ../js/app.js"></script>
 </body>
 
 </html>

@@ -60,7 +60,7 @@ session_start();
         }
         ?>
 
-        <form action="./controller/register-logic.php" method="POST">
+        <form action="./controller/register-logic.php" method="POST" onsubmit="showLoading()">
             <label for="username">Username</label> <br>
             <input name="username" maxlength="15" placeholder="Enter your Username">
             <br><br>
@@ -72,9 +72,11 @@ session_start();
             <br>
             <p>Already have an account? <a href="./login.php">Login</a></p>
             <br>
-            <button type="submit" name="register_btn">Submit</button>
+            <button type="submit" name="register_btn" id="btn">Submit</button>
         </form>
     </section>
+
+    <script src="../js/app.js"></script>
 </body>
 
 </html>
