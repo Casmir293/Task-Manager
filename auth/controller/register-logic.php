@@ -47,8 +47,18 @@ function sendemail_verify($username, $email, $token)
     echo 'Message has been sent';
 }
 
-$username = trim($_POST["username"]);
-$email = trim($_POST["email"]);
+// validate input data
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+$username = test_input($_POST["username"]);
+$email = test_input($_POST["email"]);
+$email = filter_var($email, FILTER_VALIDATE_EMAIL);
 $password = $_POST["password"];
 $password = password_hash($password, PASSWORD_DEFAULT);
 

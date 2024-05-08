@@ -5,7 +5,16 @@ error_reporting(E_ALL);
 session_start();
 include('../../private/dbconn.php');
 
-$username = trim($_POST["login_username"]);
+// validate input data
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+$username = test_input($_POST["login_username"]);
 $password = $_POST["login_password"];
 
 if (isset($_POST["login_btn"]) && !empty($username) && !empty($password)) {
