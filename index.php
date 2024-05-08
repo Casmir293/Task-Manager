@@ -72,7 +72,7 @@ require_once('./auth/controller/authentication.php');
         @media(min-width:1024px) {
             .wrapper {
                 margin: 150px 350px;
-                padding: 20px 250px;
+                padding: 20px 150px;
             }
         }
     </style>

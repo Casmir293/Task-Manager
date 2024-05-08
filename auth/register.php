@@ -17,7 +17,7 @@ session_start();
             flex-direction: column;
             background: #bbb;
             padding: 32px 0px;
-            margin: 130px 60px;
+            margin: 50px 40px;
             border-radius: 16px;
         }
 

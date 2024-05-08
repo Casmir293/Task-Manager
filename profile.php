@@ -32,7 +32,7 @@ require_once('./auth/controller/authentication.php');
             border: 1px solid black;
             background: #fff;
             padding: 32px 0px;
-            margin: 100px 40px;
+            margin: 50px 5px;
             border-radius: 16px;
         }
 
