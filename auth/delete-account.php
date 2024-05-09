@@ -28,13 +28,32 @@ session_start();
             margin-top: 4px;
         }
 
-        button {
-            width: 50%;
+        .update-btn {
             padding: 10px;
-            border-radius: 16px;
-            margin-top: 4px;
-            float: right;
+            text-align: center;
+            margin-top: 12px;
+            background: green;
+            color: white;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
         }
+
+        .cancel-btn {
+            padding: 10px;
+            text-align: center;
+            margin-top: 12px;
+            background: red;
+            color: white;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .cancel-btn>a {
+            text-decoration: none;
+            color: white;
+        }
+
 
         p {
             font-size: 12px;
@@ -51,7 +70,7 @@ session_start();
 <body>
     <section>
         <h1>⏰ My Task Manager</h1>
-        <h2>Login</h2>
+        <h2>Delete Account</h2>
 
         <?php
         if (isset($_SESSION['status'])) {
@@ -60,18 +79,15 @@ session_start();
         }
         ?>
 
-        <form action="./controller/login-logic.php" method="post" onsubmit="showLoading()">
-            <label for="username">Username</label> <br>
-            <input name="login_username" maxlength="25" placeholder="Enter your Username">
-            <br><br>
+        <form action="./controller/delete-logic.php" method="post" onsubmit="showLoading()">
             <label for="password">Password</label> <br>
-            <input name="login_password" type="password" maxlength="15" placeholder="Enter your password">
+            <input name="password" maxlength="15" type="password" placeholder="Enter your Password">
             <br>
-            <hr>
-            <p>Did not receive email verification? <a href="./resend-email-verification.php">Resend</a></p>
-            <p>Don't have an account? <a href="./register.php">Register</a></p>
-            <br>
-            <button type="submit" name="login_btn" id="btn">Submit</button>
+            <button type="submit" class="update-btn" name="delete_btn" id="btn">Delete Account</button>
+
+            <div class="cancel-btn">
+                <a href="../profile.php">Cancel</a>
+            </div>
         </form>
     </section>
 

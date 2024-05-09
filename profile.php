@@ -113,7 +113,12 @@ require_once('./auth/controller/authentication.php');
                 <br><br>
                 <label for="new_password">New Password</label> <br>
                 <input name="new_password" type="password" maxlength="15" placeholder="Enter new password">
-                <br><br>
+                <br>
+                <br>
+                <a href="./auth/delete-account.php">Delete my account?</a>
+                <br>
+                <br>
+
                 <input class="publish-task-btn" name="update_btn" value="Update" type="submit" id="btn" />
 
                 <div class="cancel-task-btn">
