@@ -23,27 +23,20 @@ if (isset($_GET['token'])) {
 
             if ($update_query_run) {
                 $_SESSION['status'] = "Account verified successfully!";
-                header("Location: ../login.php");
-                exit(0);
             } else {
                 $_SESSION['status'] = "Verification failed!";
-                header("Location: ../login.php");
-                exit(0);
             }
         } else {
             $_SESSION['status'] = "Email already verified, please login.";
-            header("Location: ../login.php");
-            exit(0);
         }
     } else {
         $_SESSION['status'] = "This token does not exist";
-        header("Location: ../login.php");
-        exit(0);
     }
 } else {
     $_SESSION['status'] = "Not Allowed";
-    header("Location: ../login.php");
-    exit(0);
 }
 
 mysqli_close($conn);
+
+header("Location: ../login.php");
+exit();

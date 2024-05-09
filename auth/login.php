@@ -65,7 +65,7 @@ session_start();
             <input name="login_username" maxlength="25" placeholder="Enter your Username">
             <br><br>
             <label for="password">Password</label> <br>
-            <input name="login_password" type="password" maxlength="15" placeholder="Enter your password">
+            <input name="login_password" type="password" maxlength="255" placeholder="Enter your password">
             <br>
             <hr>
             <p>Did not receive email verification? <a href="./resend-email-verification.php">Resend</a></p>
