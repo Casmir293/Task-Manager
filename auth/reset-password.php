@@ -65,8 +65,10 @@ session_start();
             <label for="email">Email Address</label> <br>
             <input name="email" maxlength="25" placeholder="Enter your Email">
             <br>
+            <br>
             <label for="email">New Password</label> <br>
             <input name="password" maxlength="15" placeholder="Enter your new password">
+            <br>
             <br>
             <button type="submit" name="submit_btn" id="btn">Update Password</button>
         </form>
