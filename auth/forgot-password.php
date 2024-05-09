@@ -29,11 +29,12 @@ session_start();
         }
 
         button {
-            width: 50%;
+            width: 80%;
             padding: 10px;
             border-radius: 16px;
             margin-top: 4px;
             float: right;
+            cursor: pointer;
         }
 
         p {
@@ -51,7 +52,7 @@ session_start();
 <body>
     <section>
         <h1>⏰ My Task Manager</h1>
-        <h2>Login</h2>
+        <h2>Reset Password</h2>
 
         <?php
         if (isset($_SESSION['status'])) {
@@ -60,19 +61,12 @@ session_start();
         }
         ?>
 
-        <form action="./controller/login-logic.php" method="post" onsubmit="showLoading()">
-            <label for="username">Username</label> <br>
-            <input name="login_username" maxlength="25" placeholder="Enter your Username">
-            <br><br>
-            <label for="password">Password</label> <br>
-            <input name="login_password" type="password" maxlength="15" placeholder="Enter your password">
-            <p><a href="./forgot-password.php">Forgot password?</a></p>
-            <button type="submit" name="login_btn" id="btn">Submit</button>
-            <br> <br> <br>
-            <hr>
-            <p>Did not receive email verification? <a href="./resend-email-verification.php">Resend</a></p>
-            <p>Don't have an account? <a href="./register.php">Register</a></p>
+        <form action="./controller/forgot-password-logic.php" method="post" onsubmit="showLoading()">
+            <label for="email">Email Address</label> <br>
+            <input name="email" maxlength="25" placeholder="Enter your Email">
             <br>
+            <p><a href="./login.php">Go back to login</a></p>
+            <button type="submit" name="submit_btn" id="btn">Send Verification</button>
         </form>
     </section>
 
