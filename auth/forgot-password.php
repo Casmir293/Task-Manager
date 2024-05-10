@@ -63,7 +63,7 @@ session_start();
 
         <form action="./controller/forgot-password-logic.php" method="post" onsubmit="showLoading()">
             <label for="email">Email Address</label> <br>
-            <input name="email" maxlength="25" placeholder="Enter your Email">
+            <input name="email" maxlength="50" placeholder="Enter your Email">
             <br>
             <p><a href="./login.php">Go back to login</a></p>
             <button type="submit" name="submit_btn" id="btn">Send Verification</button>

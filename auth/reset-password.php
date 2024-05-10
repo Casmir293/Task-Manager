@@ -62,15 +62,24 @@ session_start();
         ?>
 
         <form action="./controller/forgot-password-logic.php" method="post" onsubmit="showLoading()">
+            <input type="hidden" name="password_token" value="<?php if (isset($_GET['token'])) {
+                                                                    echo $_GET['token'];
+                                                                } ?>">
+
             <label for="email">Email Address</label> <br>
-            <input name="email" maxlength="25" placeholder="Enter your Email">
+            <input name="email" type="hidden" maxlength="50" value="<?php if (isset($_GET['email'])) {
+                                                                        echo $_GET['email'];
+                                                                    } ?>" placeholder="Enter your Email">
+            <input name="email" maxlength="50" value="<?php if (isset($_GET['email'])) {
+                                                            echo $_GET['email'];
+                                                        } ?>" placeholder="Enter your Email" disabled>
             <br>
             <br>
             <label for="email">New Password</label> <br>
-            <input name="password" maxlength="15" placeholder="Enter your new password">
+            <input name="new_password" maxlength="15" type="password" placeholder="Enter your new password">
             <br>
             <br>
-            <button type="submit" name="submit_btn" id="btn">Update Password</button>
+            <button type="submit" name="update_pwd_btn" id="btn">Update Password</button>
         </form>
     </section>
 

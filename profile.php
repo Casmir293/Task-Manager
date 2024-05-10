@@ -104,9 +104,9 @@ require_once('./auth/controller/authentication.php');
             <?php include_once('./components/menu.php'); ?>
             <form action="./auth/controller/change-password.php" method="post">
                 <label for="email">Email</label> <br>
-                <input name="email" maxlength="25" placeholder="Enter your email" value="<?= $_SESSION['auth_user']['email']; ?>" disabled>
+                <input name="email" maxlength="50" placeholder="Enter your email" value="<?= $_SESSION['auth_user']['email']; ?>" disabled>
                 <label for=" username">Username</label> <br>
-                <input name="username" maxlength="25" placeholder="Enter your Username" value="<?= $_SESSION['auth_user']['username']; ?>" disabled>
+                <input name="username" maxlength="50" placeholder="Enter your Username" value="<?= $_SESSION['auth_user']['username']; ?>" disabled>
                 <br><br>
                 <label for="old_password">Old Password</label> <br>
                 <input name="old_password" type="password" maxlength="15" placeholder="Enter old password">
