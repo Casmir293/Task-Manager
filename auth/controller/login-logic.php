@@ -31,7 +31,7 @@ if (isset($_POST["login_btn"]) && !empty($username) && !empty($password)) {
                 $_SESSION['auth_user'] = [
                     'email' => $row['email'],
                     'username' => $row['username'],
-                    'password' => $row['password'],
+                    // 'password' => $row['password'],
                 ];
                 $_SESSION['status'] = "Login successful";
                 header("Location: ../../index.php");

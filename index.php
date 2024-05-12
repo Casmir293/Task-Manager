@@ -1,6 +1,6 @@
 <?php
 require_once('./auth/controller/authentication.php');
-session_start();
+// session_start();
 ?>
 
 <!DOCTYPE html>
