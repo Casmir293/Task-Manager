@@ -93,6 +93,13 @@ require_once('./auth/controller/authentication.php');
         </div>
 
         <section class="task-wrapper">
+            <?php
+            if (isset($_SESSION['status'])) {
+                echo "<h3 style='color: green; text-align: center;'>" . $_SESSION['status'] . "</h3>";
+                unset($_SESSION['status']);
+            }
+            ?>
+
             <div class="empty-task">
                 You do not have any task!
             </div>

@@ -28,6 +28,7 @@ require_once('./auth/controller/authentication.php');
             text-align: center;
             margin-top: 12px;
             background: green;
+            width: 100%;
             color: white;
             border-radius: 12px;
             cursor: pointer;
@@ -79,16 +80,26 @@ require_once('./auth/controller/authentication.php');
 <body>
     <h1>⏰ My Task Manager</h1>
 
+    <?php
+    if (isset($_SESSION['status'])) {
+        echo "<h3 style='color: green;'>" . $_SESSION['status'] . "</h3>";
+        unset($_SESSION['status']);
+    }
+    ?>
+
     <section class="add-task-form">
-        <form action="">
+        <form action="controller/addTask.php" method="post">
             <h5>Title</h5>
             <input class="task-input" placeholder="Enter task title" name="title" maxlength="80">
             <br><br>
             <h5>Description</h5>
             <textarea name="description" maxlength="300" rows="10" placeholder="Describe task"></textarea>
             <br><br>
+            <h5>Start date</h5>
+            <input class="task-input" type="date" name="start_date">
+            <br><br>
             <h5>Due date</h5>
-            <input class="task-input" type="date" name="date" id="">
+            <input class="task-input" type="date" name="due_date">
             <br><br>
 
             <h5>Priority</h5>
@@ -98,16 +109,18 @@ require_once('./auth/controller/authentication.php');
             <label for="medium">medium</label>
             <input type="radio" id="high" name="priority" value="high">
             <label for="high">high</label>
-        </form>
+            <br>
 
-        <div class="publish-task-btn">
-            Publish
-        </div>
+            <button class="publish-task-btn" name="publish_task_btn" type="submit" id="btn">
+                Publish
+            </button>
+        </form>
 
         <div class="cancel-task-btn">
             <a href="./index.php">Cancel</a>
         </div>
     </section>
+    <script src="js/app.js"></script>
 </body>
 
 </html>

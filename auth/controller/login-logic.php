@@ -18,7 +18,7 @@ $username = test_input($_POST["login_username"]);
 $password = $_POST["login_password"];
 
 if (isset($_POST["login_btn"]) && !empty($username) && !empty($password)) {
-    $verify_query = "SELECT username, password, email, verify_status FROM users WHERE username = '$username' LIMIT 1";
+    $verify_query = "SELECT * FROM users WHERE username = '$username' LIMIT 1";
     $verify_query_run = mysqli_query($conn, $verify_query);
 
     if (mysqli_num_rows($verify_query_run) > 0) {
@@ -31,7 +31,7 @@ if (isset($_POST["login_btn"]) && !empty($username) && !empty($password)) {
                 $_SESSION['auth_user'] = [
                     'email' => $row['email'],
                     'username' => $row['username'],
-                    // 'password' => $row['password'],
+                    'id' => $row['id'],
                 ];
                 $_SESSION['status'] = "Login successful";
                 header("Location: ../../index.php");
