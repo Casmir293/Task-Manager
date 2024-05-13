@@ -110,6 +110,17 @@ require_once('./auth/controller/authentication.php');
             <input type="radio" id="high" name="priority" value="high">
             <label for="high">high</label>
             <br>
+            <br>
+
+            <h5>Status</h5>
+            <input type="radio" id="pending" name="status" value="pending">
+            <label for="pending">Pending</label>
+            <input type="radio" id="progress" name="status" value="progress">
+            <label for="progress">In Progress</label>
+            <input type="radio" id="completed" name="status" value="completed">
+            <label for="completed">Completed</label>
+            <br>
+            <br>
 
             <button class="publish-task-btn" name="publish_task_btn" type="submit" id="btn">
                 Publish

@@ -47,11 +47,6 @@ require_once('./auth/controller/authentication.php');
             margin-top: 10px;
         }
 
-        .empty-task {
-            font-size: x-large;
-            text-align: center;
-        }
-
         @media(min-width:768px) {
             .wrapper {
                 margin: 150px;
@@ -99,10 +94,6 @@ require_once('./auth/controller/authentication.php');
                 unset($_SESSION['status']);
             }
             ?>
-
-            <div class="empty-task">
-                You do not have any task!
-            </div>
 
             <div>
                 <?php include_once('./components/task-list.php'); ?>

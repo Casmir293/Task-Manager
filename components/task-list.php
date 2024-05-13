@@ -11,6 +11,7 @@
             padding: 16px;
             border-radius: 12px;
             background: white;
+            margin-bottom: 16px;
         }
 
         .task-top {
@@ -34,8 +35,18 @@
             font-weight: 900;
         }
 
+        .date {
+            display: flex;
+            gap: 10px;
+        }
+
         .date-label {
             font-weight: 900;
+        }
+
+        .empty-task {
+            font-size: x-large;
+            text-align: center;
         }
 
         .indicator {
@@ -81,35 +92,64 @@
 </head>
 
 <body>
-    <section class="task-wrap">
-        <div class="task-top">
-            <h3>Learn PHP</h3>
-            <div class="priority">high</div>
-        </div>
+    <?php
+    require_once('./private/dbconn.php');
 
-        <div>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque voluptatibus commodi delectus maxime ab quas quaerat sint dolore alias sed explicabo autem molestiae perferendis, libero, sequi laudantium nihil nisi atque?
-        </div>
+    $user_id = $_SESSION['auth_user']['id'];
 
-        <div class="task-subfooter">
-            <div>
-                <div class="date-label">Due date</div>
-                <div>08/5/2024</div>
-            </div>
-            <div class="completed">
-                <div class="indicator"></div>
-                <div>Completed</div>
-            </div>
-        </div>
+    $all_tasks_query = "SELECT * FROM tasks WHERE user_id = '$user_id'";
+    $all_tasks_query_run = mysqli_query($conn, $all_tasks_query);
 
-        <div class="foot-wrap">
-            <div class="task-footer">
-                <p class="edit">Edit</p>
-                <p class="delete">Delete</p>
-            </div>
-            <div class="edited">Edited</div>
+    if ($all_tasks_query_run && mysqli_num_rows($all_tasks_query_run) > 0) {
+        while ($task = mysqli_fetch_assoc($all_tasks_query_run)) {
+    ?>
+
+            <section class="task-wrap">
+                <div class="task-top">
+                    <h3><?= $task['title']; ?></h3>
+                    <div class="priority"><?= $task['priority']; ?></div>
+                </div>
+
+                <div>
+                    <?= $task['description']; ?>
+                </div>
+
+                <div class="task-subfooter">
+                    <div class="date">
+                        <div>
+                            <div class="date-label">Start date</div>
+                            <div><?= $task['start_date']; ?></div>
+                        </div>
+                        <div>
+                            <div class="date-label">Due date</div>
+                            <div><?= $task['due_date']; ?></div>
+                        </div>
+                    </div>
+                    <div class="completed">
+                        <div class="indicator"></div>
+                        <div><?= $task['status']; ?></div>
+                    </div>
+                </div>
+
+                <div class="foot-wrap">
+                    <div class="task-footer">
+                        <p class="edit">Edit</p>
+                        <p class="delete"><a href="./controller/delete-task.php?id=<?= $task['id']; ?>">Delete</a></p>
+                    </div>
+                </div>
+            </section>
+
+        <?php
+        }
+    } else {
+        ?>
+        <div class="empty-task">
+            You do not have any task!
         </div>
-    </section>
+    <?php
+    }
+    mysqli_close($conn);
+    ?>
 </body>
 
 </html>
