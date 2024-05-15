@@ -21,14 +21,14 @@ function resend_email_verify($username, $email, $token)
     $mail->SMTPDebug = SMTP::DEBUG_SERVER;
     $mail->isSMTP();
     $mail->SMTPAuth   = true;
-    $mail->Host       = 'smtp.gmail.com';
-    $mail->Username   = 'casmir293@gmail.com';
+    $mail->Host       = 'casmir.dev';
+    $mail->Username   = 'webdev@casmir.dev';
     $mail->Password   = $pwd;
     $mail->SMTPSecure = 'ssl';
     $mail->Port       = 465;
 
     //Recipients
-    $mail->setFrom('casmir293@gmail.com', $username);
+    $mail->setFrom('webdev@casmir.dev', $username);
     $mail->addAddress($email);
 
     //Content

@@ -15,6 +15,14 @@ if (isset($_POST["delete_btn"]) && !empty($password)) {
         $my_password = $row['password'];
 
         if (password_verify($password, $my_password)) {
+            $id_query = "SELECT id FROM users WHERE username = '$username' LIMIT 1";
+            $id_query_run = mysqli_query($conn, $id_query);
+            $id_row = mysqli_fetch_assoc($id_query_run);
+            $my_id = $id_row['id'];
+
+            $delete_tasks_query = "DELETE FROM tasks WHERE id='$my_id' LIMIT 1";
+            $delete_tasks_result = mysqli_query($conn, $delete_tasks_query);
+
             $delete_query = "DELETE FROM users WHERE username='$username' LIMIT 1";
             $delete_query_run = mysqli_query($conn, $delete_query);
 
