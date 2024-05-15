@@ -133,7 +133,7 @@
 
                 <div class="foot-wrap">
                     <div class="task-footer">
-                        <p class="edit">Edit</p>
+                        <p class="edit"><a href="edit-task.php?id=<?= $task['id']; ?>">Edit</a></p>
                         <p class="delete"><a href="./controller/delete-task.php?id=<?= $task['id']; ?>">Delete</a></p>
                     </div>
                 </div>
