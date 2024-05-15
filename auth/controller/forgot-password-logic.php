@@ -50,7 +50,7 @@ $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 // Send new password reset link
 if (isset($_POST['submit_btn'])) {
     if (!empty(filter_var($email, FILTER_VALIDATE_EMAIL))) {
-        $check_email_query = "SELECT email FROM users WHERE email ='$email' LIMIT 1";
+        $check_email_query = "SELECT * FROM users WHERE email ='$email' LIMIT 1";
         $check_email_query_run = mysqli_query($conn, $check_email_query);
 
         if (mysqli_num_rows($check_email_query_run) > 0) {
