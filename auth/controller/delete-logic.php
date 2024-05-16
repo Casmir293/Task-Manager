@@ -18,22 +18,28 @@ if (isset($_POST["delete_btn"]) && !empty($password)) {
             $id_query = "SELECT id FROM users WHERE username = '$username' LIMIT 1";
             $id_query_run = mysqli_query($conn, $id_query);
             $id_row = mysqli_fetch_assoc($id_query_run);
-            $my_id = $id_row['id'];
+            $user_id = $id_row['id'];
 
-            $delete_tasks_query = "DELETE FROM tasks WHERE id='$my_id' LIMIT 1";
+            $delete_tasks_query = "DELETE FROM tasks WHERE user_id='$user_id'";
             $delete_tasks_result = mysqli_query($conn, $delete_tasks_query);
 
-            $delete_query = "DELETE FROM users WHERE username='$username' LIMIT 1";
-            $delete_query_run = mysqli_query($conn, $delete_query);
+            if ($delete_tasks_result) {
+                $delete_query = "DELETE FROM users WHERE username='$username' LIMIT 1";
+                $delete_query_run = mysqli_query($conn, $delete_query);
 
-            if ($delete_query_run) {
-                unset($_SESSION['authenticated']);
-                unset($_SESSION['auth_user']);
-                $_SESSION['status'] = "Account deleted successfully";
-                header("Location: ../register.php");
-                exit();
+                if ($delete_query_run) {
+                    unset($_SESSION['authenticated']);
+                    unset($_SESSION['auth_user']);
+                    $_SESSION['status'] = "Account deleted successfully";
+                    header("Location: ../register.php");
+                    exit();
+                } else {
+                    $_SESSION['status'] = "Error deleting account";
+                    header("Location: ../delete-account.php");
+                    exit();
+                }
             } else {
-                $_SESSION['status'] = "Error deleting account";
+                $_SESSION['status'] = "Error deleting tasks";
                 header("Location: ../delete-account.php");
                 exit();
             }
